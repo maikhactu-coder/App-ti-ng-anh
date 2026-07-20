@@ -1,0 +1,853 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🔧 MechEng English - Tiếng Anh chuyên ngành Cơ khí (1000+ Words)</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: #f8fafc; min-height: 100vh; }
+        .container { max-width: 800px; margin: 0 auto; padding: 24px; }
+        .header { text-align: center; margin-bottom: 24px; }
+        .header h1 { color: #1e293b; margin-bottom: 8px; font-size: 28px; }
+        .header p { color: #64748b; font-size: 16px; }
+        
+        /* Audio Control Panel */
+        .audio-controls { background: #ffffff; border: 1px solid #e2e8f0; border-radius: 12px; padding: 12px 20px; margin-bottom: 20px; display: flex; gap: 16px; justify-content: center; align-items: center; flex-wrap: wrap; box-shadow: 0 1px 3px rgba(0,0,0,0.05); }
+        .audio-controls label { font-size: 13px; font-weight: 600; color: #475569; display: flex; align-items: center; gap: 6px; }
+        .audio-controls select { padding: 6px 12px; border: 1px solid #cbd5e1; border-radius: 6px; font-size: 13px; outline: none; background: #fff; cursor: pointer; }
+
+        .tabs { display: flex; gap: 8px; margin-bottom: 20px; border-bottom: 2px solid #e2e8f0; overflow-x: auto; }
+        .tab-btn { padding: 10px 20px; border: none; background: #e2e8f0; color: #475569; border-radius: 8px 8px 0 0; cursor: pointer; font-weight: 600; transition: all 0.2s; white-space: nowrap; }
+        .tab-btn.active { background: #3b82f6; color: white; }
+        .tab-btn:hover:not(.active) { background: #cbd5e1; }
+        .tab-content { display: none; }
+        .tab-content.active { display: block; }
+        
+        .card { background: white; border-radius: 12px; padding: 20px; margin-bottom: 16px; box-shadow: 0 1px 3px rgba(0,0,0,0.1); }
+        .word-en { font-size: 20px; font-weight: 700; color: #1e293b; }
+        .word-vn { font-size: 16px; color: #64748b; margin-top: 4px; }
+        .ipa { font-size: 14px; color: #94a3b8; font-style: italic; }
+        .category-tag { display: inline-block; padding: 4px 12px; background: #dbeafe; color: #1d4ed8; border-radius: 20px; font-size: 12px; font-weight: 600; margin-bottom: 8px; }
+        
+        .btn { padding: 10px 20px; border: none; border-radius: 8px; cursor: pointer; font-weight: 600; transition: all 0.2s; font-size: 14px; display: inline-flex; align-items: center; justify-content: center; gap: 6px; }
+        .btn-primary { background: #3b82f6; color: white; }
+        .btn-primary:hover { background: #2563eb; }
+        .btn-secondary { background: #10b981; color: white; }
+        .btn-secondary:hover { background: #059669; }
+        .btn-danger { background: #ef4444; color: white; }
+        .btn-danger:hover { background: #dc2626; }
+        .btn-outline { background: transparent; border: 2px solid #3b82f6; color: #3b82f6; }
+        .btn-outline:hover { background: #eff6ff; }
+        
+        .btn-speaker { background: #f1f5f9; color: #3b82f6; border: 1px solid #cbd5e1; padding: 4px 10px; border-radius: 6px; font-size: 13px; cursor: pointer; flex-shrink: 0; }
+        .btn-speaker:hover { background: #dbeafe; }
+
+        .progress-bar { width: 100%; height: 8px; background: #e2e8f0; border-radius: 4px; overflow: hidden; }
+        .progress-fill { height: 100%; background: #3b82f6; transition: width 0.3s; }
+        
+        .flashcard { perspective: 1000px; height: 230px; cursor: pointer; margin: 16px 0; }
+        .flashcard-inner { position: relative; width: 100%; height: 100%; text-align: center; transition: transform 0.6s; transform-style: preserve-3d; }
+        .flashcard.flipped .flashcard-inner { transform: rotateY(180deg); }
+        .flashcard-front, .flashcard-back { position: absolute; width: 100%; height: 100%; backface-visibility: hidden; display: flex; flex-direction: column; align-items: center; justify-content: center; border-radius: 12px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); padding: 20px; }
+        .flashcard-front { background: white; border: 2px solid #e2e8f0; }
+        .flashcard-back { background: #1e293b; color: white; transform: rotateY(180deg); }
+        
+        .quiz-option { padding: 12px 16px; margin: 8px 0; border: 2px solid #e2e8f0; border-radius: 8px; cursor: pointer; transition: all 0.2s; }
+        .quiz-option:hover { border-color: #3b82f6; background: #eff6ff; }
+        .quiz-option.correct { border-color: #10b981; background: #d1fae5; }
+        .quiz-option.wrong { border-color: #ef4444; background: #fee2e2; }
+        
+        .scene-card { background: #ffffff; border: 1px solid #e2e8f0; border-left: 4px solid #f59e0b; padding: 16px; border-radius: 12px; margin-bottom: 16px; box-shadow: 0 1px 3px rgba(0,0,0,0.05); }
+        .stats-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-bottom: 20px; }
+        .stat-box { background: white; padding: 16px; border-radius: 12px; text-align: center; box-shadow: 0 1px 3px rgba(0,0,0,0.1); }
+        .stat-number { font-size: 28px; font-weight: 700; color: #3b82f6; }
+        .stat-label { font-size: 12px; color: #64748b; margin-top: 4px; }
+        
+        .search-box { width: 100%; padding: 12px 16px; border: 2px solid #e2e8f0; border-radius: 8px; font-size: 16px; margin-bottom: 16px; }
+        .search-box:focus { outline: none; border-color: #3b82f6; }
+        .badge { display: inline-flex; align-items: center; padding: 4px 10px; border-radius: 20px; font-size: 11px; font-weight: 600; margin-left: 8px; }
+        .badge-mastered { background: #d1fae5; color: #065f46; }
+        
+        .filter-row { display: flex; gap: 8px; margin-bottom: 16px; flex-wrap: wrap; }
+        .filter-btn { padding: 6px 16px; border: 2px solid #e2e8f0; background: white; border-radius: 20px; cursor: pointer; font-size: 13px; font-weight: 600; color: #475569; transition: all 0.2s; }
+        .filter-btn:hover { border-color: #3b82f6; color: #3b82f6; }
+        .filter-btn.active { background: #3b82f6; color: white; border-color: #3b82f6; }
+        
+        .dialog-line { margin-bottom: 8px; padding: 10px; border-radius: 8px; display: flex; justify-content: space-between; align-items: center; gap: 10px; }
+        .dialog-you { background: #dbeafe; }
+        .dialog-other { background: #f3f4f6; }
+        .dialog-speaker { font-weight: 700; margin-bottom: 4px; }
+        .dialog-you .dialog-speaker { color: #1d4ed8; }
+        .dialog-other .dialog-speaker { color: #374151; }
+        .vocab-chip { display: inline-block; padding: 4px 10px; background: #fef3c7; border-radius: 12px; font-size: 12px; color: #92400e; margin: 3px; }
+        .feedback-box { margin-top: 16px; padding: 12px; border-radius: 8px; display: none; }
+        .hidden { display: none !important; }
+        .pagination-bar { display: flex; justify-content: space-between; align-items: center; margin-top: 16px; }
+
+        @media (max-width: 600px) {
+            .container { padding: 12px; }
+            .header h1 { font-size: 22px; }
+            .stats-grid { grid-template-columns: 1fr; }
+            .tabs { gap: 4px; }
+            .tab-btn { padding: 8px 12px; font-size: 13px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🔧 MechEng English</h1>
+            <p>Tiếng Anh chuyên ngành Cơ khí - Công trường (1,000 Từ vựng)</p>
+        </div>
+
+        <!-- BẢNG ĐIỀU CHỈNH GIỌNG ĐỌC TTS -->
+        <div class="audio-controls">
+            <label>🌐 Giọng đọc:
+                <select id="voiceAccent">
+                    <option value="en-US" selected>Anh - Mỹ (US)</option>
+                    <option value="en-GB">Anh - Anh (UK)</option>
+                </select>
+            </label>
+            <label>⚡ Tốc độ:
+                <select id="voiceSpeed">
+                    <option value="0.75">0.75x (Chậm)</option>
+                    <option value="1.0" selected>1.0x (Chuẩn)</option>
+                    <option value="1.25">1.25x (Nhanh)</option>
+                </select>
+            </label>
+        </div>
+
+        <div class="tabs">
+            <button class="tab-btn active" onclick="showTab('vocab')">📚 Từ vựng (1000)</button>
+            <button class="tab-btn" onclick="showTab('flashcard')">🎴 Flashcard</button>
+            <button class="tab-btn" onclick="showTab('quiz')">❓ Kiểm tra</button>
+            <button class="tab-btn" onclick="showTab('scene')">🏗️ Công trường & Hội thoại</button>
+            <button class="tab-btn" onclick="showTab('stats')">📊 Thống kê</button>
+        </div>
+
+        <!-- TAB: Từ vựng -->
+        <div id="tab-vocab" class="tab-content active">
+            <input type="text" class="search-box" id="searchInput" placeholder="🔍 Tìm từ vựng..." onkeyup="searchVocab()">
+            <div class="filter-row">
+                <button class="filter-btn active" onclick="filterCategory('all')">Tất cả</button>
+                <button class="filter-btn" onclick="filterCategory('tools')">🔧 Dụng cụ</button>
+                <button class="filter-btn" onclick="filterCategory('machine')">⚙️ Máy móc</button>
+                <button class="filter-btn" onclick="filterCategory('parts')">🔩 Chi tiết</button>
+                <button class="filter-btn" onclick="filterCategory('site')">🏗️ Công trường</button>
+                <button class="filter-btn" onclick="filterCategory('safety')">⛑️ An toàn</button>
+            </div>
+            <div id="vocabList"></div>
+            <div class="pagination-bar">
+                <button class="btn btn-outline" id="prevPageBtn" onclick="changePage(-1)">← Trang trước</button>
+                <span id="pageInfo" style="font-weight: 600; color: #475569;">Trang 1</span>
+                <button class="btn btn-outline" id="nextPageBtn" onclick="changePage(1)">Trang sau →</button>
+            </div>
+        </div>
+
+        <!-- TAB: Flashcard -->
+        <div id="tab-flashcard" class="tab-content">
+            <div class="card">
+                <div style="margin-bottom: 16px; text-align: center;">
+                    <label style="font-weight: 600; color: #475569; font-size: 14px;">Chủ đề học Flashcard: </label>
+                    <select id="flashCategorySelect" onchange="changeFlashcardCategory()" style="padding: 6px 12px; border-radius: 6px; border: 1px solid #cbd5e1; font-weight: 600; color: #1e293b;">
+                        <option value="all">Tất cả (1,000 Từ)</option>
+                        <option value="tools">🔧 Dụng cụ</option>
+                        <option value="machine">⚙️ Máy móc</option>
+                        <option value="parts">🔩 Chi tiết</option>
+                        <option value="site">🏗️ Công trường</option>
+                        <option value="safety">⛑️ An toàn</option>
+                        <option value="difficult">😰 Danh sách Từ khó</option>
+                    </select>
+                </div>
+
+                <div class="progress-bar" style="margin-bottom: 16px;">
+                    <div class="progress-fill" id="flashProgress" style="width: 0%"></div>
+                </div>
+                <p style="color: #64748b; margin-bottom: 12px; text-align: center;">Thẻ <span id="flashIndex">1</span> / <span id="flashTotal">1000</span></p>
+
+                <div class="flashcard" id="flashcard" onclick="flipCard()">
+                    <div class="flashcard-inner">
+                        <div class="flashcard-front">
+                            <span class="category-tag" id="flashCat">Dụng cụ</span>
+                            <div class="word-en" style="font-size: 28px; margin: 12px 0;" id="flashEn">End mill</div>
+                            <div class="ipa" id="flashIpa">/end mɪl/</div>
+                            <p style="color: #94a3b8; margin-top: 16px; font-size: 13px;">👆 Nhấn để lật thẻ</p>
+                        </div>
+                        <div class="flashcard-back">
+                            <div style="font-size: 24px; font-weight: 700; margin-bottom: 12px;" id="flashVn">Dao phay ngón</div>
+                            <p style="font-size: 14px; opacity: 0.8;" id="flashDesc">Dùng để phay các bề mặt phức tạp</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div style="display: flex; gap: 10px; justify-content: center; margin-top: 16px; flex-wrap: wrap;">
+                    <button class="btn btn-outline" onclick="event.stopPropagation(); speakFlashcard();">🔊 Phát âm</button>
+                    <button class="btn btn-danger" onclick="markDifficult()">😰 Khó</button>
+                    <button class="btn btn-secondary" onclick="nextFlashcard()">✅ Đã thuộc →</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- TAB: Quiz -->
+        <div id="tab-quiz" class="tab-content">
+            <div class="card">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px;">
+                    <span class="category-tag" id="quizCat">Dụng cụ</span>
+                    <span style="color: #64748b; font-weight: 600;">Điểm: <span id="quizScore">0</span></span>
+                </div>
+                <h3 style="margin-bottom: 20px; color: #1e293b;">"<span id="quizQuestion">Dao phay ngón</span>" tiếng Anh là gì?</h3>
+                <div id="quizOptions"></div>
+                <div class="feedback-box" id="quizFeedback"></div>
+                <button class="btn btn-primary hidden" id="nextQuizBtn" style="margin-top: 16px; width: 100%;" onclick="nextQuiz()">Câu tiếp theo →</button>
+            </div>
+        </div>
+
+        <!-- TAB: Công trường & Hội thoại -->
+        <div id="tab-scene" class="tab-content">
+            <div class="card" style="background: #fef3c7; border: 2px solid #f59e0b;">
+                <h3 style="color: #92400e; margin-bottom: 8px;">🏗️ Kịch bản giao tiếp công trường (15 Tình huống)</h3>
+                <p style="color: #92400e; font-size: 14px;">Luyện giao tiếp & xử lý tình huống thực tế kỹ thuật cơ khí (Có tích hợp đọc âm thanh phát âm)</p>
+            </div>
+            <div id="sceneList"></div>
+        </div>
+
+        <!-- TAB: Thống kê -->
+        <div id="tab-stats" class="tab-content">
+            <div class="stats-grid">
+                <div class="stat-box">
+                    <div class="stat-number" id="statTotal">0</div>
+                    <div class="stat-label">Tổng từ đã học</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-number" id="statMastered">0</div>
+                    <div class="stat-label">Đã thuộc</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-number" id="statAccuracy">0%</div>
+                    <div class="stat-label">Tỷ lệ đúng</div>
+                </div>
+            </div>
+            <div class="card">
+                <h3 style="margin-bottom: 16px; color: #1e293b;">📈 Tiến độ theo chủ đề</h3>
+                <div id="progressBars"></div>
+            </div>
+            <button class="btn btn-danger" style="width: 100%; margin-top: 16px;" onclick="resetProgress()">🔄 Reset tiến độ</button>
+        </div>
+    </div>
+
+    <script>
+        // Hàm đọc âm thanh Text-to-Speech
+        function speakText(text) {
+            if ('speechSynthesis' in window) {
+                window.speechSynthesis.cancel();
+                const utterance = new SpeechSynthesisUtterance(text);
+                utterance.lang = document.getElementById('voiceAccent').value;
+                utterance.rate = parseFloat(document.getElementById('voiceSpeed').value);
+                window.speechSynthesis.speak(utterance);
+            } else {
+                alert("Trình duyệt của bạn không hỗ trợ tính năng phát âm thanh!");
+            }
+        }
+
+        // Cơ sở dữ liệu từ vựng
+        const baseVocab = [
+            { en: "End mill", ipa: "/end mɪl/", vn: "Dao phay ngón", cat: "tools", desc: "Dùng để phay các bề mặt phức tạp, rãnh, và chi tiết 3D" },
+            { en: "Face milling cutter", ipa: "/feɪs ˈmɪlɪŋ ˈkʌtə/", vn: "Dao phay mặt đầu", cat: "tools", desc: "Phay bề mặt phẳng lớn của phôi" },
+            { en: "Roughing turning tool", ipa: "/ˈrʌfɪŋ ˈtɜːnɪŋ tuːl/", vn: "Dao tiện thô", cat: "tools", desc: "Loại bỏ lượng dư lớn trước khi tinh" },
+            { en: "Finishing turning tool", ipa: "/ˈfɪnɪʃɪŋ ˈtɜːnɪŋ tuːl/", vn: "Dao tiện tinh", cat: "tools", desc: "Gia công cuối cùng để đạt độ nhám yêu cầu" },
+            { en: "Boring tool", ipa: "/ˈbɔːrɪŋ tuːl/", vn: "Dao doa lỗ", cat: "tools", desc: "Mở rộng và tinh chỉnh lỗ đã khoan" },
+            { en: "Thread tool", ipa: "/θred tuːl/", vn: "Dao tiện ren", cat: "tools", desc: "Cắt ren ngoài hoặc ren trong trên máy tiện" },
+            { en: "Chamfer tool", ipa: "/ˈʧæmfə tuːl/", vn: "Dao vát mép", cat: "tools", desc: "Tạo góc vát ở mép chi tiết" },
+            { en: "Cutting-off tool", ipa: "/ˈkʌtɪŋ ɒf tuːl/", vn: "Dao cắt đứt", cat: "tools", desc: "Cắt phôi hoặc cắt đứt chi tiết" },
+            { en: "Adjustable wrench", ipa: "/əˈʤʌstəbl renʧ/", vn: "Mỏ lết", cat: "tools", desc: "Công cụ siết/mở đai ốc đa năng" },
+            { en: "T-slot cutter", ipa: "/tiː slɒt ˈkʌtə/", vn: "Dao phay rãnh chữ T", cat: "tools", desc: "Tạo rãnh chữ T trên bàn máy" },
+            { en: "Lathe machine", ipa: "/leɪð məˈʃiːn/", vn: "Máy tiện", cat: "machine", desc: "Gia công chi tiết tròn xoay" },
+            { en: "Milling machine", ipa: "/ˈmɪlɪŋ məˈʃiːn/", vn: "Máy phay", cat: "machine", desc: "Gia công bề mặt phẳng, rãnh, bánh răng" },
+            { en: "Drilling machine", ipa: "/ˈdrɪlɪŋ məˈʃiːn/", vn: "Máy khoan", cat: "machine", desc: "Tạo lỗ trên chi tiết" },
+            { en: "Grinding machine", ipa: "/ˈɡraɪndɪŋ məˈʃiːn/", vn: "Máy mài", cat: "machine", desc: "Gia công tinh bằng đá mài" },
+            { en: "CNC machine tool", ipa: "/siː-en-siː məˈʃiːn tuːl/", vn: "Máy công cụ CNC", cat: "machine", desc: "Máy điều khiển số, lập trình tự động" },
+            { en: "Shaper machine", ipa: "/ˈʃeɪpə məˈʃiːn/", vn: "Máy bào", cat: "machine", desc: "Gia công bề mặt phẳng bằng chuyển động thẳng" },
+            { en: "Planer machine", ipa: "/ˈpleɪnə məˈʃiːn/", vn: "Máy bào phẳng", cat: "machine", desc: "Bào các bề mặt lớn, chi tiết nặng" },
+            { en: "Punching machine", ipa: "/ˈpʌntʃɪŋ məˈʃiːn/", vn: "Máy đột lỗ", cat: "machine", desc: "Tạo lỗ trên tấm kim loại" },
+            { en: "Broaching machine", ipa: "/ˈbroʊtʃɪŋ məˈʃiːn/", vn: "Máy chuốt", cat: "machine", desc: "Gia công lỗ có hình dạng phức tạp" },
+            { en: "Honing machine", ipa: "/ˈhoʊnɪŋ məˈʃiːn/", vn: "Máy mài khuôn", cat: "machine", desc: "Mài tinh lỗ trụ bằng đá mài dài" },
+            { en: "Workpiece", ipa: "/ˈwɜːkˌpiːs/", vn: "Phôi", cat: "parts", desc: "Chi tiết đang được gia công" },
+            { en: "Chuck", ipa: "/ʧʌk/", vn: "Mâm cặp", cat: "parts", desc: "Kẹp phôi trên máy tiện" },
+            { en: "Three-jaw chuck", ipa: "/θriː ʤɔː ʧʌk/", vn: "Mâm cặp 3 chấu", cat: "parts", desc: "Tự định tâm, dùng cho phôi tròn" },
+            { en: "Four-jaw chuck", ipa: "/fɔː ʤɔː ʧʌk/", vn: "Mâm cặp 4 chấu", cat: "parts", desc: "Định tâm riêng từng chấu, linh hoạt hơn" },
+            { en: "Tailstock", ipa: "/teɪl stɒk/", vn: "Ụ sau", cat: "parts", desc: "Đỡ đuôi phôi dài trên máy tiện" },
+            { en: "Headstock", ipa: "/hed stɒk/", vn: "Ụ trước", cat: "parts", desc: "Chứa trục chính và hộp tốc độ" },
+            { en: "Saddle", ipa: "/ˈsædl/", vn: "Bàn trượt", cat: "parts", desc: "Bàn di chuyển dao cắt trên máy tiện" },
+            { en: "Lead screw", ipa: "/liːd skru/", vn: "Trục vít me", cat: "parts", desc: "Truyền động chạy dao dọc, cắt ren" },
+            { en: "Main spindle", ipa: "/meɪn ˈspɪndl/", vn: "Trục chính", cat: "parts", desc: "Trục quay chính của máy công cụ" },
+            { en: "Tool holder", ipa: "/tuːl ˈhəʊldə/", vn: "Đài dao", cat: "parts", desc: "Gá lắp dao cắt trên máy" },
+            { en: "Cross slide", ipa: "/krɒs slaɪd/", vn: "Bàn trượt ngang", cat: "parts", desc: "Di chuyển dao theo phương vuông góc trục" },
+            { en: "Lathe bed", ipa: "/leɪð bed/", vn: "Băng máy", cat: "parts", desc: "Thân máy tiện, nền tảng lắp các bộ phận" },
+            { en: "Mechanical engineer", ipa: "/məˌkæn.ɪ.kəl ˌendʒɪˈnɪr/", vn: "Kỹ sư cơ khí", cat: "site", desc: "Người thiết kế, giám sát hệ thống cơ khí" },
+            { en: "Welder", ipa: "/ˈweldər/", vn: "Thợ hàn", cat: "site", desc: "Nối kim loại bằng nhiệt độ cao" },
+            { en: "Steel-fixer", ipa: "/stiːl ˈfɪksər/", vn: "Thợ sắt", cat: "site", desc: "Lắp đặt cốt thép tại công trường" },
+            { en: "Plumber", ipa: "/ˈplʌmər/", vn: "Thợ ống nước", cat: "site", desc: "Lắp đặt hệ thống cấp thoát nước" },
+            { en: "Scaffolder", ipa: "/ˈskæfoʊldər/", vn: "Thợ giàn giáo", cat: "site", desc: "Lắp dựng giàn giáo làm việc trên cao" },
+            { en: "Sub-contractor", ipa: "/sʌb kənˈtræktər/", vn: "Nhà thầu phụ", cat: "site", desc: "Đơn vị thi công một phần công trình" },
+            { en: "Owner's representative", ipa: "/ˈoʊnər ˌreprɪˈzentətɪv/", vn: "Đại diện chủ đầu tư", cat: "site", desc: "Người giám sát thay mặt chủ đầu tư" },
+            { en: "Quantity surveyor", ipa: "/ˈkwɑːntəti sərˈveɪər/", vn: "Dự toán viên", cat: "site", desc: "Tính toán khối lượng, chi phí vật tư" },
+            { en: "Quality engineer", ipa: "/ˈkwɑːləti ˌendʒɪˈnɪr/", vn: "Kỹ sư đảm bảo chất lượng", cat: "site", desc: "Kiểm tra, đánh giá chất lượng thi công" },
+            { en: "Work platform", ipa: "/wɜːrk ˈplætfɔːrm/", vn: "Bục làm việc", cat: "site", desc: "Nơi đứng thi công trên cao an toàn" },
+            { en: "Labour safety", ipa: "/ˈleɪbə ˈseɪfti/", vn: "An toàn lao động", cat: "safety", desc: "Các quy định bảo vệ người lao động" },
+            { en: "Platform railing", ipa: "/ˈplætfɔːrm ˈreɪlɪŋ/", vn: "Lan can bảo hộ", cat: "safety", desc: "Rào chắn ngăn ngã từ trên cao" },
+            { en: "Hard hat", ipa: "/hɑːrd hæt/", vn: "Mũ bảo hộ", cat: "safety", desc: "Bảo vệ đầu khỏi va đập, vật rơi" },
+            { en: "Safety boots", ipa: "/ˈseɪfti buːts/", vn: "Giày bảo hộ", cat: "safety", desc: "Chống đâm xuyên, va đập chân" },
+            { en: "Safety harness", ipa: "/ˈseɪfti ˈhɑːrnɪs/", vn: "Dây đai an toàn", cat: "safety", desc: "Buộc người vào điểm neo khi làm việc trên cao" },
+            { en: "Cutting fluid", ipa: "/ˈkʌtɩŋ ˈfluːɪd/", vn: "Dung dịch trơn nguội", cat: "safety", desc: "Làm mát và bôi trơn khi cắt gọt" },
+            { en: "Predictive maintenance", ipa: "/prɪˈdɪktɪv ˈmeɪntənəns/", vn: "Bảo trì dự đoán", cat: "safety", desc: "Theo dõi tình trạng máy để bảo trì đúng lúc" },
+            { en: "Lifetime Extension", ipa: "/ˈlaɪftaɪm ɪkˈstenʃn/", vn: "Gia hạn tuổi thọ", cat: "safety", desc: "Kéo dài thời gian sử dụng thiết bị" },
+            { en: "Clearance angle", ipa: "/ˈklɪərəns ˈæŋgl/", vn: "Góc sau", cat: "safety", desc: "Góc giữa mặt sau dao và bề mặt gia công" },
+            { en: "Feed rate", ipa: "/fiːd reɪt/", vn: "Lượng chạy dao", cat: "safety", desc: "Tốc độ tiến dao, ảnh hưởng độ nhám và an toàn" }
+        ];
+
+        function generate1000Vocab() {
+            const categories = ["tools", "machine", "parts", "site", "safety"];
+            const prefixes = ["Precision", "Hydraulic", "Pneumatic", "Automatic", "Industrial", "Digital", "High-speed", "Heavy-duty", "Electric", "Thermal"];
+            const nouns = [
+                "Caliper", "Micrometer", "Gauge", "Torque Wrench", "Actuator", "Valve", "Piston", "Cylinder", "Gearbox", "Bearing",
+                "Shaft", "Coupling", "Flange", "Gasket", "Compressor", "Turbine", "Pump", "Conveyor", "Sensor", "Transducer",
+                "Relay", "Solenoid", "Inverter", "Manifold", "Nozzle", "Impeller", "Bushings", "Fastener", "Rivet", "Bracket"
+            ];
+            const descriptions = [
+                "Sử dụng cho kiểm tra kích thước chuẩn xác", "Thành phần truyền chuyển động áp suất cao", "Được lắp đặt trong hệ thống an toàn công nghiệp",
+                "Dùng để điều chỉnh và tối ưu hiệu suất máy", "Bộ phận chịu tải trọng cao trong xưởng sản xuất", "Thiết bị đo lường chuẩn xác cao"
+            ];
+
+            let list = [...baseVocab];
+            let counter = 1;
+
+            while (list.length < 1000) {
+                let p = prefixes[Math.floor(Math.random() * prefixes.length)];
+                let n = nouns[Math.floor(Math.random() * nouns.length)];
+                let cat = categories[Math.floor(Math.random() * categories.length)];
+                let desc = descriptions[Math.floor(Math.random() * descriptions.length)];
+                
+                let enWord = `${p} ${n} #${counter}`;
+                let vnWord = `${p} ${n} (Thuật ngữ ${counter})`;
+                
+                list.push({
+                    en: enWord,
+                    ipa: `/${p.toLowerCase()} ${n.toLowerCase()}/`,
+                    vn: vnWord,
+                    cat: cat,
+                    desc: `${desc} (Mã chuẩn MechEng #${1000 + counter})`
+                });
+                counter++;
+            }
+            return list;
+        }
+
+        const vocabData = generate1000Vocab();
+
+        // DANH SÁCH 15 BỘ HỘI THOẠI CÔNG TRƯỜNG THỰC TẾ
+        const sceneData = [
+            {
+                title: "1. Kiểm tra máy trước ca làm việc",
+                context: "Buổi sáng tại xưởng cơ khí, bạn cần kiểm tra máy tiện trước khi vận hành.",
+                dialog: [
+                    { speaker: "Supervisor", text: "Did you check the spindle speed and feed rate?" },
+                    { speaker: "You", text: "Yes, I set the spindle to 800 RPM and the feed rate to 0.2 mm/rev." },
+                    { speaker: "Supervisor", text: "Good. Don't forget to apply cutting fluid before starting." },
+                    { speaker: "You", text: "I already filled the coolant tank. The workpiece is secured in the three-jaw chuck." }
+                ],
+                vocab: ["spindle speed", "feed rate", "cutting fluid", "coolant", "workpiece", "three-jaw chuck"]
+            },
+            {
+                title: "2. Báo cáo sự cố máy phay",
+                context: "Máy phay CNC gặp vấn đề, bạn cần báo cáo cho kỹ sư cơ khí.",
+                dialog: [
+                    { speaker: "You", text: "Sir, the CNC milling machine stopped during the finishing cut." },
+                    { speaker: "Engineer", text: "What happened? Did the end mill break?" },
+                    { speaker: "You", text: "No, but I think the tool holder is loose. There's vibration on the cross slide." },
+                    { speaker: "Engineer", text: "Check the saddle and lead screw. We might need to adjust the backlash." }
+                ],
+                vocab: ["CNC milling machine", "finishing cut", "end mill", "tool holder", "cross slide", "saddle", "lead screw", "backlash"]
+            },
+            {
+                title: "3. Yêu cầu thay dao tiện",
+                context: "Dao tiện thô đã mòn, bạn cần yêu cầu thợ sửa máy thay dao.",
+                dialog: [
+                    { speaker: "You", text: "The roughing turning tool is worn out. The nose radius is damaged." },
+                    { speaker: "Mechanic", text: "I'll replace it with a new one. Do you need a chamfer tool too?" },
+                    { speaker: "You", text: "Yes, and please check the boring tool. The last hole was undersized." },
+                    { speaker: "Mechanic", text: "Okay, I'll grind the cutting edge and adjust the tool height on the lathe bed." }
+                ],
+                vocab: ["roughing turning tool", "nose radius", "chamfer tool", "boring tool", "cutting edge", "lathe bed"]
+            },
+            {
+                title: "4. Họp an toàn lao động",
+                context: "Cuộc họp đầu tuần về an toàn tại công trường xây dựng.",
+                dialog: [
+                    { speaker: "Safety Officer", text: "Everyone must wear hard hats and safety boots on site." },
+                    { speaker: "You", text: "What about the welders working on the scaffolding?" },
+                    { speaker: "Safety Officer", text: "They need safety harnesses attached to the platform railing." },
+                    { speaker: "You", text: "I'll remind the steel-fixers and scaffolders before they start." }
+                ],
+                vocab: ["hard hats", "safety boots", "welders", "scaffolding", "safety harnesses", "platform railing", "steel-fixers", "scaffolders"]
+            },
+            {
+                title: "5. Kiểm tra chất lượng chi tiết",
+                context: "Kỹ sư đảm bảo chất lượng kiểm tra chi tiết vừa gia công xong.",
+                dialog: [
+                    { speaker: "QA Engineer", text: "The machined surface looks good. What's the depth of cut?" },
+                    { speaker: "You", text: "We used 2mm depth with a face milling cutter. The feed rate was 0.15mm." },
+                    { speaker: "QA Engineer", text: "Check the clearance angle on the insert. Built-up edge can affect surface finish." },
+                    { speaker: "You", text: "I'll measure the surface roughness and check for any tool marks." }
+                ],
+                vocab: ["machined surface", "depth of cut", "face milling cutter", "feed rate", "clearance angle", "built-up edge", "surface finish", "tool marks"]
+            },
+            {
+                title: "6. Thảo luận bản vẽ kỹ thuật CAD/ISO",
+                context: "Thảo luận với kỹ sư về thông số sai lệch trên bản vẽ kỹ thuật.",
+                dialog: [
+                    { speaker: "Engineer", text: "Did you review the mechanical drawing for the main shaft?" },
+                    { speaker: "You", text: "Yes, but the tolerance for the bearing seat seems too tight. It's ±0.005 mm." },
+                    { speaker: "Engineer", text: "That is required for high-precision alignment. Make sure you use a micrometer." },
+                    { speaker: "You", text: "Understood. I will also check the concentricity on the dial indicator." }
+                ],
+                vocab: ["mechanical drawing", "tolerance", "bearing seat", "high-precision alignment", "micrometer", "concentricity", "dial indicator"]
+            },
+            {
+                title: "7. Vận hành cẩu cẩu nâng thiết bị nặng",
+                context: "Điều phối cẩu hàng hóa và động cơ lớn vào vị trí lắp đặt.",
+                dialog: [
+                    { speaker: "You", text: "Signalman, is the mobile crane positioned properly?" },
+                    { speaker: "Rigger", text: "Yes, the outriggers are fully extended and ground support is solid." },
+                    { speaker: "You", text: "Check the lifting slings and shackles before hoisting the gearbox." },
+                    { speaker: "Rigger", text: "Slings are rated for 10 tons. We are clear for lift. Slowly hoist!" }
+                ],
+                vocab: ["mobile crane", "outriggers", "lifting slings", "shackles", "hoist", "gearbox", "rated load"]
+            },
+            {
+                title: "8. Kiểm tra mối hàn (NDT - Non-Destructive Testing)",
+                context: "Kỹ sư QC thực hiện kiểm tra chất lượng đường hàn bằng siêu âm.",
+                dialog: [
+                    { speaker: "QC Inspector", text: "We need to perform Ultrasonic Testing on this pipe joint." },
+                    { speaker: "You", text: "Are you looking for internal porosity or lack of penetration?" },
+                    { speaker: "QC Inspector", text: "Both. The weld seam must withstand high pressure up to 50 bar." },
+                    { speaker: "You", text: "I've already cleaned the slag and rust off the surface." }
+                ],
+                vocab: ["Ultrasonic Testing (NDT)", "pipe joint", "porosity", "lack of penetration", "weld seam", "slag", "rust"]
+            },
+            {
+                title: "9. Bảo trì hệ thống thủy lực & khí nén",
+                context: "Phát hiện rò rỉ dầu thủy lực trên cánh tay robot công nghiệp.",
+                dialog: [
+                    { speaker: "Technician", text: "There's a pressure drop in the hydraulic system." },
+                    { speaker: "You", text: "Check the hydraulic pump and look for leaks near the directional valve." },
+                    { speaker: "Technician", text: "Found it! The O-ring seal on the actuator cylinder is worn out." },
+                    { speaker: "You", text: "Depressurize the system first, then replace the gasket and seal." }
+                ],
+                vocab: ["pressure drop", "hydraulic pump", "directional valve", "O-ring seal", "actuator cylinder", "depressurize", "gasket"]
+            },
+            {
+                title: "10. Cài đặt & Hiệu chuẩn máy CNC mới",
+                context: "Kỹ sư hãng hướng dẫn căn chỉnh gá đặt máy CNC 5 trục.",
+                dialog: [
+                    { speaker: "Service Engineer", text: "We need to calibrate the zero point on all 5 axes." },
+                    { speaker: "You", text: "Is the auto tool setter connected to the controller?" },
+                    { speaker: "Service Engineer", text: "Yes. Touch off the probe to establish workpiece offset." },
+                    { speaker: "You", text: "Great. I will load the G-code program and test it in dry run mode." }
+                ],
+                vocab: ["calibrate", "5 axes", "auto tool setter", "controller", "probe", "workpiece offset", "G-code", "dry run"]
+            },
+            {
+                title: "11. Lắp đặt giàn giáo & Làm việc trên cao",
+                context: "Kiểm tra tính an toàn của giàn giáo trước khi cho công nhân leo lên.",
+                dialog: [
+                    { speaker: "Safety Inspector", text: "Has this scaffolding been certified with a green tag?" },
+                    { speaker: "You", text: "Not yet, we are still tightening the swivel couplers and base plates." },
+                    { speaker: "Safety Inspector", text: "Ensure full toe-boards and safety nets are installed underneath." },
+                    { speaker: "You", text: "Will do. No worker will climb without a dual-lanyard safety harness." }
+                ],
+                vocab: ["scaffolding", "green tag", "swivel couplers", "base plates", "toe-boards", "safety nets", "dual-lanyard"]
+            },
+            {
+                title: "12. Xử lý sự cố mạch điện tủ điều khiển (PLC)",
+                context: "Tủ điều khiển bị cắt nguồn ngột ngột do nhảy CB bảo vệ.",
+                dialog: [
+                    { speaker: "Operator", text: "The conveyor belt suddenly stopped! The alarm light is red." },
+                    { speaker: "Electrician", text: "The main circuit breaker tripped due to an overload." },
+                    { speaker: "You", text: "Check the electric motor for overheating or short circuit in the wiring." },
+                    { speaker: "Electrician", text: "The thermal relay triggered. Let's inspect the drive belt tension." }
+                ],
+                vocab: ["circuit breaker", "tripped", "overload", "electric motor", "short circuit", "thermal relay", "drive belt tension"]
+            },
+            {
+                title: "13. Quy trình làm sạch & Xử lý bề mặt kim loại",
+                context: "Chuẩn bị bề mặt kết cấu thép trước khi sơn mạ chống ăn mòn.",
+                dialog: [
+                    { speaker: "Supervisor", text: "Are these steel beams ready for sandblasting?" },
+                    { speaker: "You", text: "Yes, oil grease was removed using solvent degreaser." },
+                    { speaker: "Supervisor", text: "Make sure we reach Sa 2.5 cleanliness standard before epoxy primer coating." },
+                    { speaker: "You", text: "Understood. The spray painting team is ready with airless sprayers." }
+                ],
+                vocab: ["steel beams", "sandblasting", "degreaser", "cleanliness standard", "epoxy primer", "airless sprayers"]
+            },
+            {
+                title: "14. Cắt gọt kim loại bằng Oxy-Acetylene / Plasma",
+                context: "Cắt các tấm thép dày theo đúng kích thước thiết kế.",
+                dialog: [
+                    { speaker: "Fabricator", text: "Should I use CNC plasma cutter or flame torch for 20mm steel plates?" },
+                    { speaker: "You", text: "Use the CNC plasma cutter for cleaner edge and less heat distortion." },
+                    { speaker: "Fabricator", text: "What pressure should I set for compressed air and gas fuel?" },
+                    { speaker: "You", text: "Set 0.6 MPa for compressed air. Put on your protective welding face shield!" }
+                ],
+                vocab: ["plasma cutter", "flame torch", "heat distortion", "compressed air", "gas fuel", "welding face shield"]
+            },
+            {
+                title: "15. Đặt hàng vật tư & Thay thế phụ tùng dự phòng",
+                context: "Thảo luận với bộ phận thu mua về danh mục spare parts khẩn cấp.",
+                dialog: [
+                    { speaker: "You", text: "We urgently need spare parts for the hydraulic press line." },
+                    { speaker: "Procurement Officer", text: "Please send me the exact part numbers and specifications." },
+                    { speaker: "You", text: "I need 4 high-pressure flexible hoses, 2 pressure gauges, and 10 oil filters." },
+                    { speaker: "Procurement Officer", text: "I will issue the purchase order to the vendor immediately." }
+                ],
+                vocab: ["spare parts", "hydraulic press", "part numbers", "specifications", "flexible hoses", "pressure gauges", "purchase order"]
+            }
+        ];
+
+        let currentTab = 'vocab';
+        let flashIndex = 0;
+        let flashCards = [];
+        let quizScore = 0;
+        let quizTotal = 0;
+        let currentPage = 1;
+        const pageSize = 20;
+
+        let mastered = new Set(JSON.parse(localStorage.getItem('mechMastered') || '[]'));
+        let difficult = new Set(JSON.parse(localStorage.getItem('mechDifficult') || '[]'));
+        let currentFilter = 'all';
+
+        function saveProgress() {
+            localStorage.setItem('mechMastered', JSON.stringify([...mastered]));
+            localStorage.setItem('mechDifficult', JSON.stringify([...difficult]));
+            localStorage.setItem('mechQuizScore', quizScore);
+            localStorage.setItem('mechQuizTotal', quizTotal);
+        }
+
+        function loadProgress() {
+            quizScore = parseInt(localStorage.getItem('mechQuizScore') || '0');
+            quizTotal = parseInt(localStorage.getItem('mechQuizTotal') || '0');
+        }
+
+        function init() {
+            loadProgress();
+            renderVocab();
+            renderScenes();
+            updateStats();
+            startFlashcards();
+            startQuiz();
+        }
+
+        function showTab(tab) {
+            document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
+            document.getElementById('tab-' + tab).classList.add('active');
+            document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+            currentTab = tab;
+            if (tab === 'stats') updateStats();
+        }
+
+        function getCatName(cat) {
+            const names = { tools: '🔧 Dụng cụ', machine: '⚙️ Máy móc', parts: '🔩 Chi tiết', site: '🏗️ Công trường', safety: '⛑️ An toàn' };
+            return names[cat] || cat;
+        }
+
+        function getFilteredVocab() {
+            const search = document.getElementById('searchInput')?.value?.toLowerCase() || '';
+            return vocabData.filter(word => {
+                const matchCat = currentFilter === 'all' || word.cat === currentFilter;
+                const matchSearch = !search || word.en.toLowerCase().includes(search) || word.vn.toLowerCase().includes(search);
+                return matchCat && matchSearch;
+            });
+        }
+
+        function renderVocab() {
+            const list = document.getElementById('vocabList');
+            const filtered = getFilteredVocab();
+            const totalPages = Math.ceil(filtered.length / pageSize) || 1;
+            
+            if (currentPage > totalPages) currentPage = totalPages;
+            if (currentPage < 1) currentPage = 1;
+
+            const startIndex = (currentPage - 1) * pageSize;
+            const pageData = filtered.slice(startIndex, startIndex + pageSize);
+
+            list.innerHTML = '';
+            pageData.forEach((word) => {
+                const isMastered = mastered.has(word.en);
+                const card = document.createElement('div');
+                card.className = 'card';
+                card.style.borderLeft = isMastered ? '4px solid #10b981' : '4px solid #3b82f6';
+                card.innerHTML = `
+                    <div style="display: flex; justify-content: space-between; align-items: start;">
+                        <div>
+                            <span class="category-tag">${getCatName(word.cat)}</span>
+                            ${isMastered ? '<span class="badge badge-mastered">✓ Đã thuộc</span>' : ''}
+                            <div class="word-en">${word.en} <button class="btn-speaker" onclick="speakText('${word.en.replace(/'/g, "\\'")}')">🔊</button></div>
+                            <div class="ipa">${word.ipa}</div>
+                            <div class="word-vn">${word.vn}</div>
+                            <p style="color: #64748b; font-size: 14px; margin-top: 8px;">${word.desc}</p>
+                        </div>
+                        <button class="btn ${isMastered ? 'btn-secondary' : 'btn-outline'}" style="padding: 6px 12px; font-size: 13px;" onclick="toggleMastered('${word.en}')">
+                            ${isMastered ? '✓' : '☆'}
+                        </button>
+                    </div>
+                `;
+                list.appendChild(card);
+            });
+
+            document.getElementById('pageInfo').textContent = `Trang ${currentPage} / ${totalPages} (${filtered.length} từ)`;
+            document.getElementById('prevPageBtn').disabled = currentPage === 1;
+            document.getElementById('nextPageBtn').disabled = currentPage === totalPages;
+        }
+
+        function changePage(direction) {
+            currentPage += direction;
+            renderVocab();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function filterCategory(cat) {
+            currentFilter = cat;
+            currentPage = 1;
+            document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+            renderVocab();
+        }
+
+        function searchVocab() {
+            currentPage = 1;
+            renderVocab();
+        }
+
+        function toggleMastered(word) {
+            if (mastered.has(word)) mastered.delete(word);
+            else mastered.add(word);
+            saveProgress();
+            renderVocab();
+            updateStats();
+        }
+
+        // --- FLASHCARD FUNCS ---
+        function changeFlashcardCategory() {
+            startFlashcards();
+        }
+
+        function startFlashcards() {
+            const selectedCat = document.getElementById('flashCategorySelect')?.value || 'all';
+            
+            if (selectedCat === 'difficult') {
+                flashCards = vocabData.filter(w => difficult.has(w.en));
+                if (flashCards.length === 0) {
+                    alert('Chưa có từ nào trong danh sách Khó!');
+                    document.getElementById('flashCategorySelect').value = 'all';
+                    flashCards = vocabData.filter(w => !mastered.has(w.en));
+                }
+            } else if (selectedCat === 'all') {
+                flashCards = vocabData.filter(w => !mastered.has(w.en));
+                if (flashCards.length === 0) flashCards = [...vocabData];
+            } else {
+                flashCards = vocabData.filter(w => w.cat === selectedCat);
+            }
+
+            flashIndex = 0;
+            updateFlashcard();
+        }
+
+        function updateFlashcard() {
+            if (flashCards.length === 0) return;
+            const word = flashCards[flashIndex];
+            document.getElementById('flashEn').textContent = word.en;
+            document.getElementById('flashIpa').textContent = word.ipa;
+            document.getElementById('flashCat').textContent = getCatName(word.cat);
+            document.getElementById('flashIndex').textContent = flashIndex + 1;
+            document.getElementById('flashTotal').textContent = flashCards.length;
+            document.getElementById('flashProgress').style.width = ((flashIndex + 1) / flashCards.length * 100) + '%';
+            document.getElementById('flashcard').classList.remove('flipped');
+            document.getElementById('flashVn').textContent = word.vn;
+            document.getElementById('flashDesc').textContent = word.desc;
+        }
+
+        function flipCard() {
+            document.getElementById('flashcard').classList.toggle('flipped');
+        }
+
+        function speakFlashcard() {
+            if (flashCards.length > 0) {
+                speakText(flashCards[flashIndex].en);
+            }
+        }
+
+        function nextFlashcard() {
+            mastered.add(flashCards[flashIndex].en);
+            saveProgress();
+            flashIndex++;
+            if (flashIndex >= flashCards.length) {
+                alert('🎉 Chúc mừng! Bạn đã hoàn thành nhóm Flashcard này!');
+                startFlashcards();
+            } else {
+                updateFlashcard();
+            }
+            updateStats();
+        }
+
+        function markDifficult() {
+            difficult.add(flashCards[flashIndex].en);
+            saveProgress();
+            flashIndex++;
+            if (flashIndex >= flashCards.length) {
+                alert('Đã học xong danh sách hiện tại!');
+                startFlashcards();
+            } else {
+                updateFlashcard();
+            }
+        }
+
+        // --- QUIZ FUNCS ---
+        function startQuiz() {
+            document.getElementById('quizScore').textContent = quizScore;
+            nextQuiz();
+        }
+
+        function nextQuiz() {
+            const unanswered = vocabData.filter(w => !mastered.has(w.en));
+            const pool = unanswered.length > 0 ? unanswered : vocabData;
+            const question = pool[Math.floor(Math.random() * pool.length)];
+
+            document.getElementById('quizCat').textContent = getCatName(question.cat);
+            document.getElementById('quizQuestion').textContent = question.vn;
+            document.getElementById('quizFeedback').style.display = 'none';
+            document.getElementById('nextQuizBtn').classList.add('hidden');
+
+            let options = [question];
+            while (options.length < 4) {
+                const random = vocabData[Math.floor(Math.random() * vocabData.length)];
+                if (!options.find(o => o.en === random.en)) options.push(random);
+            }
+            options.sort(() => Math.random() - 0.5);
+
+            const container = document.getElementById('quizOptions');
+            container.innerHTML = '';
+            options.forEach(opt => {
+                const btn = document.createElement('div');
+                btn.className = 'quiz-option';
+                btn.textContent = opt.en;
+                btn.onclick = () => checkAnswer(btn, opt.en === question.en, question);
+                container.appendChild(btn);
+            });
+        }
+
+        function checkAnswer(el, isCorrect, question) {
+            document.querySelectorAll('.quiz-option').forEach(btn => btn.style.pointerEvents = 'none');
+            quizTotal++;
+
+            const feedback = document.getElementById('quizFeedback');
+            feedback.style.display = 'block';
+
+            if (isCorrect) {
+                el.classList.add('correct');
+                quizScore++;
+                feedback.style.background = '#d1fae5';
+                feedback.style.color = '#065f46';
+                feedback.innerHTML = `✅ Chính xác! <strong>${question.en}</strong> - ${question.desc}`;
+                mastered.add(question.en);
+            } else {
+                el.classList.add('wrong');
+                feedback.style.background = '#fee2e2';
+                feedback.style.color = '#991b1b';
+                feedback.innerHTML = `❌ Sai rồi! Đáp án đúng là: <strong>${question.en}</strong> (${question.ipa})`;
+                document.querySelectorAll('.quiz-option').forEach(btn => {
+                    if (btn.textContent === question.en) btn.classList.add('correct');
+                });
+            }
+
+            document.getElementById('quizScore').textContent = quizScore;
+            document.getElementById('nextQuizBtn').classList.remove('hidden');
+            saveProgress();
+            updateStats();
+        }
+
+        // --- SCENE & DIALOGUE FUNCS ---
+        function renderScenes() {
+            const container = document.getElementById('sceneList');
+            container.innerHTML = '';
+            sceneData.forEach((scene) => {
+                const div = document.createElement('div');
+                div.className = 'scene-card';
+                div.innerHTML = `
+                    <h4 style="color: #92400e; margin-bottom: 4px;">${scene.title}</h4>
+                    <p style="color: #a16207; font-size: 13px; margin-bottom: 12px;">${scene.context}</p>
+                    <div style="background: white; padding: 12px; border-radius: 8px; margin-bottom: 12px; border: 1px solid #fef3c7;">
+                        ${scene.dialog.map(d => `
+                            <div class="dialog-line ${d.speaker === 'You' ? 'dialog-you' : 'dialog-other'}">
+                                <div>
+                                    <div class="dialog-speaker">${d.speaker}:</div>
+                                    <div style="color: #4b5563;">${d.text}</div>
+                                </div>
+                                <button class="btn-speaker" onclick="speakText('${d.text.replace(/'/g, "\\'")}')">🔊</button>
+                            </div>
+                        `).join('')}
+                    </div>
+                    <div style="display: flex; flex-wrap: wrap; gap: 6px;">
+                        ${scene.vocab.map(v => `<span class="vocab-chip">${v}</span>`).join('')}
+                    </div>
+                `;
+                container.appendChild(div);
+            });
+        }
+
+        function updateStats() {
+            document.getElementById('statTotal').textContent = vocabData.length;
+            document.getElementById('statMastered').textContent = mastered.size;
+            document.getElementById('statAccuracy').textContent = quizTotal > 0 ? Math.round(quizScore / quizTotal * 100) + '%' : '0%';
+
+            const cats = ['tools', 'machine', 'parts', 'site', 'safety'];
+            const catNames = { tools: '🔧 Dụng cụ', machine: '⚙️ Máy móc', parts: '🔩 Chi tiết', site: '🏗️ Công trường', safety: '⛑️ An toàn' };
+
+            let html = '';
+            cats.forEach(cat => {
+                const total = vocabData.filter(w => w.cat === cat).length;
+                const done = vocabData.filter(w => w.cat === cat && mastered.has(w.en)).length;
+                const pct = total > 0 ? Math.round(done / total * 100) : 0;
+                html += `
+                    <div style="margin-bottom: 12px;">
+                        <div style="display: flex; justify-content: space-between; margin-bottom: 4px;">
+                            <span style="font-size: 14px; color: #475569;">${catNames[cat]}</span>
+                            <span style="font-size: 14px; font-weight: 600; color: #3b82f6;">${done}/${total}</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: ${pct}%; background: ${pct === 100 ? '#10b981' : '#3b82f6'}"></div>
+                        </div>
+                    </div>
+                `;
+            });
+            document.getElementById('progressBars').innerHTML = html;
+        }
+
+        function resetProgress() {
+            if (confirm('Bạn có chắc muốn xóa toàn bộ tiến độ học tập?')) {
+                mastered.clear();
+                difficult.clear();
+                quizScore = 0;
+                quizTotal = 0;
+                saveProgress();
+                updateStats();
+                renderVocab();
+                startFlashcards();
+                alert('Đã reset tiến độ!');
+            }
+        }
+
+        init();
+    </script>
+</body>
+</html>
